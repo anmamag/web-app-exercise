@@ -1,0 +1,20 @@
+.btn {
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 7px 14px 8px 14px;
+  color: $color-white;
+  background-color: $color-navy;
+  border-radius: 50%;
+  display: inline-block;
+  text-transform: uppercase;
+  border: 2px solid $color-navy;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out,
+    opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+
+  &:hover {
+    // box-shadow: 0 2rem 5rem 1rem rgba(27, 38, 59, 0.1);
+    background-color: $color-white;
+    color: $color-navy;
+  }
+}
