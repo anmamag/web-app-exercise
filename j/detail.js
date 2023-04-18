@@ -4,6 +4,9 @@ const wrapperDetail = document.querySelector('.wrapper-detail');
 // wrapperDetail.appendChild(inputContainer);
 const detailBtn = document.querySelector('.detail__btn');
 const detailButton = document.querySelector('.detail__button');
+
+let baseUrl = window.location.origin + '/web-app-exercise';
+
 let userData = [];
 // let savedNotes = [];
 ///////////////////
@@ -59,8 +62,7 @@ const createUsers = function () {
     noteContainer.addEventListener('click', deleteItem);
   }
   const detailContainer = document.querySelector('.detail__container');
-  console.log(detailBox);
-  console.log(detailContainer);
+
   // const detailBox = document.querySelector('.detail');
   if (detailBox == null) {
     removeDOMelements(detailContainer);
@@ -87,9 +89,9 @@ function createUserDetail(element) {
               <div class="detail__save">Salva nota</div>
             </div>
             <div class="note__container"></div>
-            <button class="note__delete" onclick="deleteAllNotes()">Cancella tutte le note<img src="/i/trash-outline.svg" class="note__icon note__icon--delete"></button>
+            <button class="note__delete" onclick="deleteAllNotes()">Cancella tutte le note<img src="/web-app-exercise/i/trash-outline.svg" class="note__icon note__icon--delete"></button>
           </div>
-          <a href="/index.html" class="detail__btn">&#8592; Utenti</a>
+          <a href=${baseUrl}/index.html class="detail__btn">&#8592; Utenti</a>
           <button class="detail__button" onclick="removeUser('${element}')">
             Remove user
           </button>
@@ -138,7 +140,7 @@ function createInputList(container, content, userId) {
     const noteBox = `
       <div class="note">
         <div class="note__date">${date}<span>${hours}</span></div>
-        <div class="note__text">${content.innerText}<img src="/i/trash-outline.svg" class="note__icon"></div>
+        <div class="note__text">${content.innerText}<img src="/web-app-exercise/i/trash-outline.svg" class="note__icon"></div>
       </div>
     `;
     const note = {
@@ -199,7 +201,7 @@ function getNotes(container) {
       const noteBox = `
         <div class="note">
           <div class="note__date">${note.date}<span>${note.hours}</span></div>
-          <div class="note__text">${note.text}<img src="/i/trash-outline.svg" class="note__icon"></div>
+          <div class="note__text">${note.text}<img src="/web-app-exercise/i/trash-outline.svg" class="note__icon"></div>
         </div>
       `;
       container.insertAdjacentHTML('beforeend', noteBox);
@@ -272,12 +274,12 @@ function removeUser(element) {
   detailBox.remove();
   removeDOMelements(detailContainer);
 }
-
+console.log();
 function removeDOMelements(detailContainer) {
   // const detailContainer = document.querySelector('.detail__container');
   let userRemovedMsg = document.createElement('div');
   let goBackButton = document.createElement('a');
-  goBackButton.href = 'index.html';
+  goBackButton.href = baseUrl + '/index.html';
   goBackButton.textContent = 'go back';
   userRemovedMsg.textContent = 'Utente rimosso correttamente';
   userRemovedMsg.classList.add('detail__remove');
