@@ -312,7 +312,8 @@ function saveUserInput() {
       (userNameArr[1] !== undefined ? userNameArr[1] : '') +
       ' ' +
       (userNameArr[2] !== undefined ? userNameArr[2] : ''),
-    avatar: userImage !== '' ? userImage : '/i/user-default.png',
+    avatar:
+      userImage !== '' ? userImage : '/web-app-exercise/i/user-default.png',
   };
 
   // validate email
@@ -462,22 +463,50 @@ function findSearchResults(results) {
   // searchResults.push(result);
   // localStorage.setItem('searchResults', JSON.stringify(searchResults));
 }
-
-const searchInput = document.querySelector('.form__input');
+const searchInput = document.querySelector('[data-search]');
 searchInput.addEventListener('input', (e) => {
-  let inputValue = e.target.value;
-  if (inputValue && inputValue.trim().length > 0) {
-    inputValue = inputValue.trim().toLowerCase();
-    findSearchResults(
-      userData.filter((user) => {
-        let userNameLowerCase = user.first_name.toLowerCase();
-        return userNameLowerCase.includes(inputValue);
-      })
-    );
-  } else {
-    //invalid input
-  }
+  const value = e.target.value.toLowerCase();
+  userData.forEach((user) => {
+    const isAvailable =
+      user.first_name.toLowerCase().includes(value) ||
+      user.last_name.toLowerCase().includes(value) ||
+      (
+        user.first_name.toLowerCase() +
+        ' ' +
+        user.last_name.toLowerCase()
+      ).includes(value);
+    const columnLeftChildren = columnLeft.children;
+    for (let i = 0; i < columnLeftChildren.length; i++) {
+      let child = columnLeftChildren[i];
+      let childValue = child.children[1].innerText.toLowerCase();
+      let userFullName =
+        user.first_name.toLowerCase() + ' ' + user.last_name.toLowerCase();
+      console.log(childValue, userFullName, value);
+      if (childValue == userFullName) {
+        // console.log(userFullName, childValue, value);
+        // child.classList.toggle('hidden', !isAvailable);
+        child.classList.toggle('hidden', !isAvailable);
+      }
+    }
+    // user.element.classList.toggle('hidden', !isAvailable);
+  });
 });
+
+// const searchInput = document.querySelector('.form__input');
+// searchInput.addEventListener('input', (e) => {
+//   let inputValue = e.target.value;
+//   if (inputValue && inputValue.trim().length > 0) {
+//     inputValue = inputValue.trim().toLowerCase();
+//     findSearchResults(
+//       userData.filter((user) => {
+//         let userNameLowerCase = user.first_name.toLowerCase();
+//         return userNameLowerCase.includes(inputValue);
+//       })
+//     );
+//   } else {
+//     //invalid input
+//   }
+// });
 
 // ////////////////////////
 // DETAIL

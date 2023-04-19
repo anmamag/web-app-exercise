@@ -1,33 +1,12 @@
 const wrapperDetail = document.querySelector('.wrapper-detail');
-// const inputContainer = document.createElement('div');
-// inputContainer.classList.add('input__container');
-// wrapperDetail.appendChild(inputContainer);
 const detailBtn = document.querySelector('.detail__btn');
 const detailButton = document.querySelector('.detail__button');
 
 let baseUrl = window.location.origin + '/web-app-exercise';
 
 let userData = [];
-// let savedNotes = [];
-///////////////////
-// GET DATA
-// const getUserData = async function () {
-//   try {
-//     const response = await fetch(`https://reqres.in/api/users`);
-//     const data = await response.json();
 
-//     if (!response.ok) throw new Error(`${data.message}: ${response.status}`);
-
-//     userData = data.data;
-//     createUserDetail();
-//     let noteContainer = document.querySelector('.note__container');
-//     getNotes(noteContainer);
-//     noteContainer.addEventListener('click', deleteItem);
-//   } catch (err) {
-//     console.error(err);
-//   }
-// };
-
+// Add zero to a date with only one digit
 function addZero(i) {
   if (i < 10) {
     i = '0' + i;
@@ -63,7 +42,6 @@ const createUsers = function () {
   }
   const detailContainer = document.querySelector('.detail__container');
 
-  // const detailBox = document.querySelector('.detail');
   if (detailBox == null) {
     removeDOMelements(detailContainer);
   }
@@ -223,9 +201,6 @@ function removeLocalNotes(note) {
 
   const noteIndex = note.children[1].innerText;
   savedNotes.forEach((savedNote) => {
-    // console.log(typeof savedNote.text);
-    // const savedStr = savedNote.text.replace(/\n/gi, '');
-    // console.log(savedStr);
     if (userDetail == savedNote.id) {
       if (savedNote.text == noteIndex) {
         savedNotes.splice(savedNotes.indexOf(savedNote), 1);
@@ -274,9 +249,8 @@ function removeUser(element) {
   detailBox.remove();
   removeDOMelements(detailContainer);
 }
-console.log();
+
 function removeDOMelements(detailContainer) {
-  // const detailContainer = document.querySelector('.detail__container');
   let userRemovedMsg = document.createElement('div');
   let goBackButton = document.createElement('a');
   goBackButton.href = baseUrl + '/index.html';
